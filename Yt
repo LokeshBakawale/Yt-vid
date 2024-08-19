@@ -1,0 +1,27 @@
+from pytube import YouTube
+
+# Function to download YouTube video in HD quality
+def download_youtube_video(url, save_path='.'):
+    try:
+        # Create YouTube object
+        yt = YouTube(url)
+
+        # Get the highest resolution stream available
+        ys = yt.streams.get_highest_resolution()
+
+        # Download the video
+        print(f"Downloading {yt.title}...")
+        ys.download(save_path)
+        print("Download completed!")
+    
+    except Exception as e:
+        print(f"Error: {e}")
+
+# YouTube video URL
+video_url = 'https://www.youtube.com/watch?v=example'  # Replace with the actual URL
+
+# Path to save the video
+save_directory = '/path/to/save'  # Replace with the desired directory
+
+# Download the video
+download_youtube_video(video_url, save_directory)
